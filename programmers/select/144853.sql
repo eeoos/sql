@@ -10,3 +10,5 @@ WHERE
     PUBLISHED_DATE >= '2021-01-01' and PUBLISHED_DATE < '2022-01-01' and CATEGORY = '인문'
 order by
     PUBLISHED_DATE;
+
+-- YEAR() 함수도 사용 가능하지만 지금 방식이 날짜 범위를 찾을 수 있어 인덱스 활용 가능
