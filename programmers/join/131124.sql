@@ -1,0 +1,33 @@
+-- 문제: 그룹별 조건에 맞는 식당 목록 출력하기
+-- 링크: https://school.programmers.co.kr/learn/courses/30/lessons/131124
+
+WITH COUNT_REVIEWER AS (
+    SELECT
+        COUNT(*) AS COUNT,
+        MEMBER_ID
+    FROM
+        REST_REVIEW
+    GROUP BY
+        MEMBER_ID
+), MAX_COUNT AS (
+    SELECT
+        MAX(COUNT) AS MAX_COUNT
+    FROM
+        COUNT_REVIEWER
+    )
+SELECT
+    P.MEMBER_NAME,
+    R.REVIEW_TEXT,
+    DATE_FORMAT(R.REVIEW_DATE, '%Y-%m-%d') AS REVIEW_DATE
+FROM
+    MEMBER_PROFILE P
+JOIN
+    REST_REVIEW R ON P.MEMBER_ID = R.MEMBER_ID
+JOIN
+    COUNT_REVIEWER C ON P.MEMBER_ID = C.MEMBER_ID
+JOIN
+    MAX_COUNT M ON C.COUNT = M.MAX_COUNT
+ORDER BY
+    REVIEW_DATE,
+    R.REVIEW_TEXT
+;
