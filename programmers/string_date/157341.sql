@@ -1,5 +1,6 @@
 -- 문제: 대여 기록이 존재하는 자동차 리스트 구하기
 -- 링크: https://school.programmers.co.kr/learn/courses/30/lessons/157341
+-- *
 
 SELECT DISTINCT
     C.CAR_ID
