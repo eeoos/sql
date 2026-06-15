@@ -1,0 +1,16 @@
+-- 문제: 자동차 평균 대여 기간 구하기
+-- 링크: https://school.programmers.co.kr/learn/courses/30/lessons/157342
+
+SELECT
+    CAR_ID,
+    ROUND(SUM(DATEDIFF(END_DATE, START_DATE) + 1) / COUNT(*), 1) AS AVERAGE_DURATION
+FROM
+    CAR_RENTAL_COMPANY_RENTAL_HISTORY
+GROUP BY
+    CAR_ID
+HAVING
+    SUM(DATEDIFF(END_DATE, START_DATE) + 1) / COUNT(*) > 7
+ORDER BY
+    AVERAGE_DURATION DESC,
+    CAR_ID DESC
+;
